@@ -1,3 +1,3 @@
-# Part 1 - Introduction to React
+Introduction to React
 
 fullStackOpen
