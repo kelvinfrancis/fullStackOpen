@@ -18,6 +18,26 @@ import { useState } from "react"
 //     {text}
 //   </button>
 // )
+const History = (props) => {
+  if (props.allClicks.length === 0) {
+    return (
+      <div>
+        the app is used by pressing the buttons
+      </div>
+    )
+  }
+  return (
+    <div>
+      button press history: {props.allClicks.join(' ')}
+    </div>
+  )
+}
+
+const Button = ({ handleClick, text }) => (
+  <button onClick={handleClick}>
+    {text}
+  </button>
+)
 
 const App = () => {
   // Hook useState
@@ -43,7 +63,8 @@ const App = () => {
 
   const handleLeftClick = () => {
     setAll(allClicks.concat('L'))
-    setLeft(left + 1)
+    const updatedLeft = left + 1
+    setLeft(updatedLeft)
   }
   
   const handleRightClick = () => {
@@ -54,10 +75,10 @@ const App = () => {
   return (
     <div>
       {left}
-      <button onClick={handleLeftClick}>left </button>
-      <button onClick={handleRightClick}>right</button>
+      <Button handleClick={handleLeftClick} text='left'/>
+      <Button handleClick={handleRightClick} text='right'/>
       {right}
-      <p>{allClicks.join(' ')}</p>
+      <History allClicks={allClicks}/>
     </div>
   )
 }
